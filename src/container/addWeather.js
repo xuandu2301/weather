@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getWeather } from '../action';
 import API from '../lib/api.js';
-import Form from '../component/form.js';
+// import Form from '../component/form.js';
 
 class addWeather extends React.Component {
   constructor(props) {
@@ -18,13 +18,16 @@ class addWeather extends React.Component {
   }
   weather = (e) => {
     e.preventDefault();
+    // const url = `https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`;
+    console.log('URL------------');
     const API_KEY = 'ea7aadb2d04142c4c5f0b05005af2f1d';
     const city = e.target.elements.city.value;
     const country = e.target.elements.country.value;
     API.get(`/weather?q=${city},${country}&appid=${API_KEY}`)
       .then(res => {
+        console.log(res)
         if (city && country) {
-          this.setState({
+          this.props.setWeatherToRedux({
             temp: res.main.temp,
             city: res.name,
             country: res.sys.country,
@@ -32,6 +35,9 @@ class addWeather extends React.Component {
             description: res.weather[0].description,
             error: ""
           })
+          console.log(res)
+          // this.setState(duLoDuoc);
+          // this.props.setWeatherToRedux(duLoDuoc)
         } else {
           this.setState({
             error: "Please input values"
@@ -42,7 +48,7 @@ class addWeather extends React.Component {
   render() {
     return (
       <div>
-        <form onSubmit={() => {
+        {/* <form onSubmit={() => {
           getWeather(
             {
               temp: this.res.main.temp,
@@ -53,22 +59,21 @@ class addWeather extends React.Component {
               error: ""
             }
           )
-        }}>
-          <Form loadWeather={this.weather} />
+        }}> */}
+        <form onSubmit={this.weather}>
+          <input type="text" name="city" placeholder="City..." />
+          <input type="text" name="country" placeholder="Country..." />
           <button>Get Weather</button>
         </form>
       </div >
     )
   }
 }
-// const mapStateToProps = state => ({
-//   todos: getVisibleTodos(state.todos, state.visibilityFilter)
-// })
 
 const mapDispatchToProps = dispatch => ({
-  getWeather: data => dispatch(getWeather(data))
+  setWeatherToRedux: data => dispatch(getWeather(data))
 })
 export default connect(
-  // mapStateToProps,
+  null,
   mapDispatchToProps
 )(addWeather)

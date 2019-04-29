@@ -1,13 +1,14 @@
 const getWeather = (state = {}, action) => {
+    console.log('I am Iron man', action)
     switch (action.type) {
         case 'GET_WEATHER':
             return (
                 {
-                    temp: action.data.temp,
-                    city: action.data.name,
-                    country: action.data.country,
-                    humidity: action.data.humidity,
-                    description: action.data.description,
+                    temp: action.payload.temp,
+                    city: action.payload.name,
+                    country: action.payload.country,
+                    humidity: action.payload.humidity,
+                    description: action.payload.description,
                     error: ""
                 }
             )

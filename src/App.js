@@ -76,7 +76,7 @@ class App extends Component {
                   {/* <Form loadWeather={this.getWeather} /> */}
                   <AddWeather />
                   <Weather />
-                    {/* // temp={this.state.temp}
+                  {/* // temp={this.state.temp}
                     // city={this.state.city}
                     // country={this.state.country}
                     // humidity={this.state.humidity}

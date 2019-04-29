@@ -1,4 +1,7 @@
-export const getWeather = data => ({
-    type: 'GET_WEATHER',
-    data: data
-})
+export const getWeather = data => {
+    console.log('action------------', data);
+    return {
+        type: 'GET_WEATHER',
+        payload: data
+    }
+} 
