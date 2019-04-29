@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 class Weather extends React.Component {
     render() {
-        console.log(this.props.reduxState);
         return (
             <div className="weather-info">
                 {this.props.reduxState.city && this.props.reduxState.country && <p className="weather__key">Location:

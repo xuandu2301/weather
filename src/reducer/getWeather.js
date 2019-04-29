@@ -1,5 +1,4 @@
 const getWeather = (state = {}, action) => {
-    console.log('I am Iron man', action)
     switch (action.type) {
         case 'GET_WEATHER':
             return (
